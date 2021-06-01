@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+	<head>
+		<meta charset = "UTF-8">
+		<title>Hello! You are welcome!</title>
+	</head>
+	<body>
+		<h1>Регистрация</h1>
+		<form method = "post" action = "{% url 'register' %}">
+			{% csrf_token %}
+
+			{% if form.errors %}
+			<p>Неверные данные!</p>
+			{% endif %}
+
+			{{form }}
+
+			<input type = "submit" value = "Register">
+	</body>
+{% endblock %}

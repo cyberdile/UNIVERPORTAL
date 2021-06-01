@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if students %}
+		<div class="student_list_container">
+			{% for student in students %}
+				<div class="student_container">
+					<h1 class="student_name">{{student.stud.last_name}} {{ student.stud.first_name }}</h1>
+					<p class="student_body">
+                        <p><span>Дата рождения: {{ student.birth_date }}</span></p>
+                        <p><b><span>Bio:</span></b></p>
+						    {{student.bio}}
+                        <p><span>{{ student.year_in_un }}</span></p>
+					</p>
+				</div>
+			{% endfor %}
+        <a href="../">Назад</a>
+		</div>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+    <h1 class="page-header">Кафедры</h1>
+    <table class="table table-dark">
+        <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            <th>Номер</th>
+            <th>Курс</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for kaf in kafs %}
+        <tr>
+            <td>{{ kaf.id }}</td>
+            <td>{{ kaf.num }}</td>
+            <td>{{ kaf.course }}</td>
+            <td><a href="{{ kaf.id }}"><button type="button" class="btn btn-info">Перейти</button></a></td>
+            <td><button type="button" class="btn btn-warning btn-sm js-update-kaf" data-url="{% url 'kaf_update' kaf.id %}"><span class="glyphicon glyphicon-pencil"></span> Edit</button></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7" class="text-center bg-warning">Нет кафедр</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>

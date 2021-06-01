@@ -1,0 +1,128 @@
+{% block script %}
+    <script>
+$(function () {
+
+  var loadForm = function () {
+    var btn = $(this);
+    $.ajax({
+      url: btn.attr("data-url"),
+      type: 'get',
+      dataType: 'json',
+      beforeSend: function () {
+        $("#modal-post").modal("show");
+      },
+      success: function (data) {
+        $("#modal-post .modal-content").html(data.html_form);
+      }
+    });
+  };
+
+  var saveForm = function () {
+    var form = $(this);
+    $.ajax({
+      url: form.attr("action"),
+      data: form.serialize(),
+      type: form.attr("method"),
+      dataType: 'json',
+      success: function (data) {
+        if (data.form_is_valid) {
+          $(".list").html(data.html_post_list);
+          $("#modal-post").modal("hide");
+        }
+        else {
+          $("#modal-post .modal-content").html(data.html_form);
+        }
+      }
+    });
+    return false;
+  };
+
+  $(".js-create-post").click(loadForm);
+  $("#modal-post").on("submit", ".js-post-create-form", saveForm);
+
+  $(".list").on("click", ".js-update-post", loadForm);
+  $("#modal-post").on("submit", ".js-post-update-form", saveForm);
+
+});
+    </script>
+   <script>
+    function like()
+{
+    var like = $(this);
+    var type = like.data('type');
+    var pk = like.data('id');
+    var action = like.data('action');
+    var dislike = like.next();
+
+    $.ajax({
+        url : like.attr("data-url"),
+        type : 'POST',
+        data : { 'obj' : pk },
+
+        success : function (json) {
+            like.find("[data-count='like']").text(json.like_count);
+            dislike.find("[data-count='dislike']").text(json.dislike_count);
+        }
+    });
+
+    return false;
+}
+
+function dislike()
+{
+    var dislike = $(this);
+    var type = dislike.data('type');
+    var pk = dislike.data('id');
+    var action = dislike.data('action');
+    var like = dislike.prev();
+
+    $.ajax({
+        url : dislike.attr("data-url"),
+        type : 'POST',
+        data : { 'obj' : pk },
+
+        success : function (json) {
+            dislike.find("[data-count='dislike']").text(json.dislike_count);
+            like.find("[data-count='like']").text(json.like_count);
+        }
+    });
+
+    return false;
+}
+
+// Подключение обработчиков
+$(function() {
+    $('[data-action="like"]').click(like);
+    $('[data-action="dislike"]').click(dislike);
+});
+</script>
+{% endblock %}
+
+{% for post in posts %}
+<ul class="list-group">
+    <h3><li class="list-group-item"><a href={{post.id}}> {{post.title}} </a></h3></li>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-default" style = "background: rgba(153, 204, 51); color: white;" data-url="{% url 'post_like' post.id %}" data-type="post" data-action="like"><span class="glyphicon glyphicon-thumbs-up"></span> <span data-count="like">{{ post.votes.likes.count }}</span></button>
+        <button type="button" class="btn btn-default" style = "background: rgba(240, 128, 128); color: white;" data-url="{% url 'post_dislike' post.id %}" data-type="post" data-action="dislike"><span class="glyphicon glyphicon-thumbs-down"></span> <span data-count="dislike">{{ post.votes.dislikes.count }}</span></button>
+    </div>
+
+    <span style="color:white">{{post.created_at}}
+        {% if user.is_staff %}
+        <button type="button"
+                    class="btn btn-warning btn-sm js-update-post"
+                    data-url="{% url 'post_update' post.id %}">
+                    <span class="glyphicon glyphicon-pencil"></span> Изменить
+      </button></span>    <br><br>
+    {% endif %}
+</ul>
+{% endfor %}
+
+{% if posts.has_next %}
+    <div class="battan">
+    <button id="but1">Показать ещё</button>
+    </div>
+{% else %}
+    <h5>Все посты</h5>
+
+{% endif %}

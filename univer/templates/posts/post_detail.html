@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if posts %}
+			{% for post in posts %}
+				<h1>{{post.title}}</h1>
+				<div class="text-container">{{post.text}}</div>
+			{% endfor %}
+			<a href='../'>Назад<a>
+	{% endif %}
+{% endblock %}

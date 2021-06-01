@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if groups %}
+		{% for group in groups %}
+			<h1>Группа {{ group.number }}</h1>
+            <h2>Расписание группы</h2>
+                {{ group.timetable }}
+		{% endfor %}
+        <p><a href="students/">Список студентов</a></p>
+        <p><a href="../">Назад</a></p>
+	{% endif %}
+{% endblock %}

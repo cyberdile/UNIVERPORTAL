@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block script %}
+    <script>
+$(function () {
+
+  var loadForm = function () {
+    var btn = $(this);
+    $.ajax({
+      url: btn.attr("data-url"),
+      type: 'get',
+      dataType: 'json',
+      beforeSend: function () {
+        $("#modal-post").modal("show");
+      },
+      success: function (data) {
+        $("#modal-post .modal-content").html(data.html_form);
+      }
+    });
+  };
+
+  var saveForm = function () {
+    var form = $(this);
+    $.ajax({
+      url: form.attr("action"),
+      data: form.serialize(),
+      type: form.attr("method"),
+      dataType: 'json',
+      success: function (data) {
+        if (data.form_is_valid) {
+          $(".list").html(data.html_post_list);
+          $("#modal-post").modal("hide");
+        }
+        else {
+          $("#modal-post .modal-content").html(data.html_form);
+        }
+      }
+    });
+    return false;
+  };
+
+  $(".js-create-post").click(loadForm);
+  $("#modal-post").on("submit", ".js-post-create-form", saveForm);
+
+  $(".list").on("click", ".js-update-post", loadForm);
+  $("#modal-post").on("submit", ".js-post-update-form", saveForm);
+
+});
+    </script>
+
+    <script type="text/javascript">
+    i=2
+$(document).on("click","#but1", function (){
+
+    d= document.createElement('div');
+    d.id= "next" + i
+    var next= "#next" + i;
+    c= document.getElementById('next'+i);
+    document.body.appendChild(d);
+    $(next).wrap("<div class='container'></div>")
+    $(next).load('next/' + i + "/")
+    $(".battan").html("");
+    i+=1
+});
+
+    </script>
+
+    <script>
+    function like()
+{
+    var like = $(this);
+    var type = like.data('type');
+    var pk = like.data('id');
+    var action = like.data('action');
+    var dislike = like.next();
+
+    $.ajax({
+        url : like.attr("data-url"),
+        type : 'POST',
+        data : { 'obj' : pk },
+
+        success : function (json) {
+            like.find("[data-count='like']").text(json.like_count);
+            dislike.find("[data-count='dislike']").text(json.dislike_count);
+        }
+    });
+
+    return false;
+}
+
+function dislike()
+{
+    var dislike = $(this);
+    var type = dislike.data('type');
+    var pk = dislike.data('id');
+    var action = dislike.data('action');
+    var like = dislike.prev();
+
+    $.ajax({
+        url : dislike.attr("data-url"),
+        type : 'POST',
+        data : { 'obj' : pk },
+
+        success : function (json) {
+            dislike.find("[data-count='dislike']").text(json.dislike_count);
+            like.find("[data-count='like']").text(json.like_count);
+        }
+    });
+
+    return false;
+}
+
+// Подключение обработчиков
+$(function() {
+    $('[data-action="like"]').click(like);
+    $('[data-action="dislike"]').click(dislike);
+});
+</script>
+{% endblock %}
+
+{% block content %}
+  <p>
+    {% if user.is_staff %}
+    <button type="button"
+            class="btn btn-primary js-create-post"
+            data-url="{% url 'post_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      Создать новость
+    </button>
+    {% endif %}
+  </p>
+
+<body>
+<div class="list" id="main_post_list">
+                {% include 'posts/partial_post_list.html' %}
+</div>
+<div class="battan"><button id="but1">Показать ещё</button>  </div>
+</body>
+
+  <div class="modal fade" id="modal-post">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+{% endblock %}

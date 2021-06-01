@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if kafs %}
+		{% for kaf in kafs %}
+			<h1>Кафедра №{{kaf.num}}: {{kaf.course}}</h1>
+		{% endfor %}
+        <p><a href="groups/">Список групп</a></p>
+		<<p>
+            <button type="button" class="btn btn-primary">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+                <a href="..">Кафедры</a>
+            </button>
+        </p>
+	{% endif %}
+{% endblock %}

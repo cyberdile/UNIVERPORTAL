@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block script %}
+
+    <script>
+$(function () {
+
+  var loadForm = function () {
+    var btn = $(this);
+    $.ajax({
+      url: btn.attr("data-url"),
+      type: 'get',
+      dataType: 'json',
+      beforeSend: function () {
+        $("#modal-kaf").modal("show");
+      },
+      success: function (data) {
+        $("#modal-kaf .modal-content").html(data.html_form);
+      }
+    });
+  };
+
+  var saveForm = function () {
+    var form = $(this);
+    $.ajax({
+      url: form.attr("action"),
+      data: form.serialize(),
+      type: form.attr("method"),
+      dataType: 'json',
+      success: function (data) {
+        if (data.form_is_valid) {
+          $(".list").html(data.html_kaf_list);
+          $("#modal-kaf").modal("hide");
+        }
+        else {
+          $("#modal-kaf .modal-content").html(data.html_form);
+        }
+      }
+    });
+    return false;
+  };
+
+  $(".js-create-kaf").click(loadForm);
+  $("#modal-kaf").on("submit", ".js-kaf-create-form", saveForm);
+
+  $(".list").on("click", ".js-update-kaf", loadForm);
+  $("#modal-kaf").on("submit", ".js-kaf-update-form", saveForm);
+
+});
+    </script>
+
+
+{% endblock%}
+
+
+{% block content %}
+  <p>
+    <button type="button"
+            class="btn btn-primary js-create-kaf"
+            data-url="{% url 'kaf_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      New kaf
+    </button>
+  </p>
+
+<div class="list">
+    {% include 'univer/partial_kaf_list.html' %}
+</div>
+
+<div class="modal fade" id="modal-kaf">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
+</div>
+{% endblock %}

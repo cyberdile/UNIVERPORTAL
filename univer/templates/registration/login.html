@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<head>
+		<meta charset = "UTF-8">
+		<title>Login</title>
+	</head>
+	<body>
+		{% if form.errors %}
+		<p>Проверьте данные и попробуйте ещё раз!</p>
+		{% endif %}
+
+		{% if next %}
+		<p>Нет доступа к странице.</p>
+		{% endif%}
+
+		<form method = "post" action = "{% url 'login' %}">
+			{% csrf_token %}
+
+			<p>Логин: {{ form.username }}</p>
+			<p>Пароль: {{ form.password }}</p>
+            <p><input type = "submit" = value = "Войти"></p>
+			<input type = "hidden" name = "next" value = "../success/">
+		</form>
+	</body>
+{% endblock %}
