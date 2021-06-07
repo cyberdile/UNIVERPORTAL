@@ -77,6 +77,8 @@ def save_post_form(request, form, template_name):
     data = dict()
     if request.method == 'POST':
         if form.is_valid():
+            form.save(commit=False)
+            form.instance.author = request.user
             form.save()
             data['form_is_valid'] = True
             posts = Post.objects.all().order_by('-created_at')
@@ -99,6 +101,7 @@ def post_create(request):
         form = PostForm(request.POST)
     else:
         form = PostForm()
+        form.author = request.user
     return save_post_form(request, form, 'posts/partial_post_create.html')
 
 # @api_view(['GET', 'POST'])

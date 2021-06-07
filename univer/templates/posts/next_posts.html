@@ -102,18 +102,19 @@ $(function() {
 <ul class="list-group">
     <h3><li class="list-group-item"><a href={{post.id}}> {{post.title}} </a></h3></li>
 
-    <div class="btn-group">
-        <button type="button" class="btn btn-default" style = "background: rgba(153, 204, 51); color: white;" data-url="{% url 'post_like' post.id %}" data-type="post" data-action="like"><span class="glyphicon glyphicon-thumbs-up"></span> <span data-count="like">{{ post.votes.likes.count }}</span></button>
-        <button type="button" class="btn btn-default" style = "background: rgba(240, 128, 128); color: white;" data-url="{% url 'post_dislike' post.id %}" data-type="post" data-action="dislike"><span class="glyphicon glyphicon-thumbs-down"></span> <span data-count="dislike">{{ post.votes.dislikes.count }}</span></button>
-    </div>
+    <p style="color:black; font-size:12px">{{post.created_at}}</p>
+    <div>
+        <button type="button" class="btn btn-sm btn-default js-like-post like-button"  data-url="{% url 'post_like' post.id %}" data-type="post" data-action="like"><span class="glyphicon glyphicon-thumbs-up"></span> <span data-count="like">{{ post.votes.likes.count }}</span>  Нравится</button>
+        <button type="button" class="btn btn-sm btn-default js-like-post dislike-button" data-url="{% url 'post_dislike' post.id %}" data-type="post" data-action="dislike"><span class="glyphicon glyphicon-thumbs-down"></span> <span data-count="dislike">{{ post.votes.dislikes.count }}</span> Не нравится</button>
 
-    <span style="color:white">{{post.created_at}}
         {% if user.is_staff %}
         <button type="button"
-                    class="btn btn-warning btn-sm js-update-post"
+                    class="btn change-button btn-sm js-update-post"
                     data-url="{% url 'post_update' post.id %}">
                     <span class="glyphicon glyphicon-pencil"></span> Изменить
-      </button></span>    <br><br>
+      </button>
+    </div>
+    <br><br>
     {% endif %}
 </ul>
 {% endfor %}
