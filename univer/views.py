@@ -77,6 +77,8 @@ def save_post_form(request, form, template_name):
     data = dict()
     if request.method == 'POST':
         if form.is_valid():
+            form.save(commit=False)
+            form.instance.author = request.user
             form.save()
             data['form_is_valid'] = True
             posts = Post.objects.all().order_by('-created_at')
