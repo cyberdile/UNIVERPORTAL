@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'univer',
     'widget_tweaks',
-    'drf_yasg',
+#    'drf_yasg',
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -73,13 +73,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'univer',
-        'USER': 'stasyan',
-        'PASSWORD': '14autumnautumn',
-        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD': 'workbitch',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
+
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

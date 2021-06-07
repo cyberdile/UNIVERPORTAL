@@ -1,5 +1,17 @@
+<div class="container mt-1 mb-3">
 
-{% for post in posts %}
+    <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-7">
+            <div class="card">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex p-2 bd-highlight"><button type="button" class="btn btn-outline-c btn-sm"><a href='../' class="a-button">Назад</a></button> </div>
+                </div>
+
+                <h1><div class = "d-flex p-2 bd-highlight">{{posts.title}}</div></h1>
+                <div class = "d-flex p-2 bd-highlight">{{posts.text}}</div>
+{% if posts %}
+			{% for post in posts %}
 <ul class="list-group">
     <h3><li class="list-group-item"><a href={{post.id}}>{{post.title}}</a>
     </h3>
@@ -20,3 +32,8 @@
         <td colspan="7" class="text-center bg-warning">Нет новостей</td>
     </tr>
 {% endfor %}
+    {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
