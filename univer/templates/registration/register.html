@@ -2,19 +2,65 @@
 {% block content %}
 	<head>
 		<meta charset = "UTF-8">
-		<title>Hello! You are welcome!</title>
+		<title>UNIVERPORTAL</title>
 	</head>
-	<body>
-		<h1>Регистрация</h1>
-		<form method = "post" action = "{% url 'register' %}">
-			{% csrf_token %}
 
-			{% if form.errors %}
-			<p>Неверные данные!</p>
-			{% endif %}
+<div class="container py-5">
+	    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+			<div class="col-md-6 offset-md-3">
+                    <!-- form card register -->
+                    <div class="card card-outline-secondary">
+                        <div class="card-header">
+                            <h3 class="mb-0">Регистрация</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off" id="registerForm" method="POST" action=".">
+								{% csrf_token %}
 
-			{{form }}
+                                {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    <h3>Неверно заполнены поля!</h3>
+                                    <h5>Попробуйте еще раз</h5>
+                                </div>
+                                {% endif %}
 
-			<input type = "submit" value = "Register">
-	</body>
+                                <div class="form-group">
+                                    <label for="inputName">Имя</label>
+                                    <input type="text" class="form-control" id="inputName" name="first_name" placeholder="Введите имя..." required="">
+                                </div><br>
+								<div class="form-group">
+                                    <label for="inputLastName">Фамилия</label>
+                                    <input type="text" class="form-control" id="inputLastName" name="last_name" placeholder="Введите фамилию..." required="">
+                                </div><br>
+                                <div class="form-group">
+                                    <label for="inputEmail3">Email</label>
+                                    <input type="email" class="form-control" id="inputEmail3" name="email" placeholder="Введите адрес электронной почты..." required="">
+                                </div><br>
+								<div class="form-group">
+                                    <label for="inputEmail3">Логин</label>
+                                    <input type="text" class="form-control" id="inputUsername3" name="username" placeholder="Введите логин..." required="">
+                                </div><br>
+                                <div class="form-group">
+                                    <label for="inputPassword3">Пароль</label>
+                                    <input type="password" class="form-control" id="inputPassword3" name="password1" placeholder="Введите пароль..." required="">
+                                    <div id="passwordHelp" class="form-text">Должен содержать как минимум 8 символов, 1 цифру и 1 букву.</div>
+                                </div><br>
+                                <div class="form-group">
+                                    <label for="inputVerify3">Пароль (еще раз)</label>
+                                    <input type="password" class="form-control" id="inputVerify3" name="password2" placeholder="Подтвердите пароль..." required="">
+                                </div><br>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-lg float-right">Регистрация</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /form card register -->
+			</div>
+			</div>
+		</div>
+		</div>
+</div>
 {% endblock %}

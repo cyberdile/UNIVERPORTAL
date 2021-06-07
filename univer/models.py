@@ -90,10 +90,28 @@ class Cooper(models.Model):
     kaf = models.ForeignKey(Kaf, db_index=True, null=True, on_delete=models.SET_NULL)
 
 class Post(models.Model):
-    author = models.ForeignKey(Cooper,  null=True, on_delete=models.SET_NULL)
+    author = models.ForeignKey(User,  null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=50, null=True)
     created_at = models.DateTimeField('date created', auto_now=True)
     text = models.TextField(max_length=500, blank=True)
     votes = GenericRelation(LikeDislike, related_query_name='posts')
     class Meta:
         ordering = ['-created_at']
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post,
+                             on_delete=models.CASCADE,
+                             related_query_name='comments')
+    name = models.ForeignKey(User,  null=True, on_delete=models.SET_NULL)
+    email = models.EmailField()
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ('-created',)
+
+    def __str__(self):
+        return 'Comment by {} on {}'.format(self.name, self.post)

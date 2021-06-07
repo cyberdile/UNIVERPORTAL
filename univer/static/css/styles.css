@@ -1,98 +1,52 @@
 body {
-    background-image: url("https://home.mephi.ru/assets/mephi_main_hdr_blur-8e59164011c6161f62d90e848c0bd0b336307693700d6bc14c3533a93fd08262.jpg");
-	background-attachment: fixed;
-    background-size: cover;
-    -moz-background-size: 100%; /* Firefox 3.6+ */
-    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
-    -o-background-size: 100%; /* Opera 9.6+ */
-    background-size: 100%;
-	color: lightgray;
-    margin-top: 13vh;
-    font-family: 'Roboto Slab', serif;
-
-.container {
-    margin-left: 10vh;
-    margin-right: 10vh;
-    background-color: dimgrey;
+    background-color: #eee
 }
 
-.text-container {
-	 background-image: url("https://i.pinimg.com/originals/02/1a/a7/021aa72493f24390fc53bb457892f9c9.jpg");
-	 background-size: 100%;
+.card {
+    background-color: #fff;
+    border: none
 }
 
-}
- .list-group-item{
-	 background-image: url("https://i.pinimg.com/originals/02/1a/a7/021aa72493f24390fc53bb457892f9c9.jpg");
-	 background-size: 100%;
- }
-
- .pagination{
-	 margin-left: 8vh;
- }
-
-head {
-
+.form-color {
+    background-color: #fafafa
 }
 
- h1 {
-	 text-align: center;
- }
-
- h3 {
-	 width: max-content;
- }
-
- a:link, a:active, a:visited {
-	 text-decoration: none;
-	 color: lightgray;
- }
-
- a:hover{
-	 text-decoration: underline;
-	 color: white;
- }
-
- form {
-	 text-align: center;
- }
-
- .alert-success {
-	 width: max-content;
-	 margin-left: auto;
-	 margin-right: auto;
- }
-
- .alert-warning {
-	 width: max-content;
-	 margin-left: auto;
-	 margin-right: auto;
- }
-
-.like {
-    background: rgba (124, 252, 0, 0.8);
-    }
-
- "Ниже идёт адаптивность
-
- .desktop, .mobile {
-    display: none;
- }
-
-
-@media only screen and (max-width: 425px){
-    .mobile {
-    display: block;
-
-    }
-
-
-}
-@media (min-width:426px ) {
-	.desktop{
-	display: block;
-	}
+.form-control {
+    height: 48px;
+    border-radius: 25px
 }
 
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #35b69f;
+    outline: 0;
+    box-shadow: none;
+    text-indent: 10px
+}
 
+.c-badge {
+    background-color: #35b69f;
+    color: white;
+    height: 20px;
+    font-size: 11px;
+    width: 92px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2px
+}
+
+.comment-text {
+    font-size: 13px
+}
+
+.wish {
+    color: #35b69f
+}
+
+.user-feed {
+    font-size: 14px;
+    margin-top: 12px
 }
