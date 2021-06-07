@@ -1,13 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
-	<h1>{{posts.title}}</h1>
-	<div class="text-container">{{posts.text}} author: {{ posts.author }}</div>
-	<a href='../'>Назад<a>
-
-<div class="container mt-5 mb-5">
+<div class="container mt-1 mb-3">
     <div class="row height d-flex justify-content-center align-items-center">
         <div class="col-md-7">
             <div class="card">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex p-2 bd-highlight"><button type="button" class="btn btn-outline-c btn-sm"><a href='../' class="a-button">Назад</a></button> </div>
+                </div>
+
+                <h1><div class = "d-flex p-2 bd-highlight">{{posts.title}}</div></h1>
+                <div class = "d-flex p-2 bd-highlight">{{posts.text}}</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="container mt-1 mb-5">
+    <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-7">
+            <div class="card">
+
                 <div class="p-3">
                     {% with comments.count as total_comments %}
                     <h6>Комментариев: {{ total_comments }}</h6>

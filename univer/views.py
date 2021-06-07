@@ -10,8 +10,8 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse, HttpResponse
 from django.contrib.contenttypes.models import ContentType
 from django.views import View
-from rest_framework_swagger import renderers
-from rest_framework.decorators import api_view, renderer_classes
+#from rest_framework_swagger import renderers
+#from rest_framework.decorators import api_view, renderer_classes
 
 # @api_view(['GET'])
 # @renderer_classes([renderers.OpenAPIRenderer, renderers.SwaggerUIRenderer])

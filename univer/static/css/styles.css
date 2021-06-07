@@ -50,3 +50,13 @@ body {
     font-size: 14px;
     margin-top: 12px
 }
+
+.a-button {
+    text-decoration: none;
+    color: black;
+}
+
+.btn-outline-c {
+    border-color: #35b69f;
+    border-radius: 25px
+}
