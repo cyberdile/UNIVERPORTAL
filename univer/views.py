@@ -56,23 +56,20 @@ def post_detail(request, post_id):
 # @renderer_classes([renderers.OpenAPIRenderer, renderers.SwaggerUIRenderer])
 def post_list(request):
     posts = Post.objects.all().order_by('-created_at')
-    p = Paginator(posts, 5)
-    page = request.GET.get('page')
-    content = p.get_page(page)
     return render(
             request, 'posts/post_list.html',
-            {'posts': content}
+            {'posts': posts}
             )
 
 # @api_view(['GET'])
 # @renderer_classes([renderers.OpenAPIRenderer, renderers.SwaggerUIRenderer])
-def next_posts(request, page_number):
-    posts = Post.objects.all().order_by('-created_at')
-    p = Paginator(posts, 5)
-    page = page_number
-    next = p.get_page(page)
-    return render(request, 'posts/next_posts.html',
-             {'posts':next})
+# def next_posts(request, page_number):
+#     posts = Post.objects.all().order_by('-created_at')
+#     p = Paginator(posts, 5)
+#     page = page_number
+#     next = p.get_page(page)
+#     return render(request, 'posts/next_posts.html',
+#              {'posts':next})
 
 # @api_view(['GET', 'POST'])
 # @renderer_classes([renderers.OpenAPIRenderer, renderers.SwaggerUIRenderer])
@@ -82,7 +79,7 @@ def save_post_form(request, form, template_name):
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            posts = Post.objects.all().order_by('-created_at')[:5]
+            posts = Post.objects.all().order_by('-created_at')
             data['html_post_list'] = render_to_string('posts/partial_post_list.html', {
                 'posts': posts
             })
