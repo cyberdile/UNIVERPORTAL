@@ -99,13 +99,7 @@ $(".list").on("click", ".js-dislike-post", dislike);
 
 
 {% block content %}
-  <p>
-    <button type="button"
-            class="btn btn-primary js-create-post"
-            data-url="{% url 'post_create' %}">
-      Создать новость
-    </button>
-  </p>
+
 
 <div class="list">
     {% include 'posts/partial_post_list.html' %}
