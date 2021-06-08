@@ -7,7 +7,15 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex p-2 bd-highlight"><button type="button" class="btn btn-outline-c btn-sm"><a href='../' class="a-button">Назад</a></button> </div>
+
+
+                <div class="d-flex align-items-end flex-column bd-highlight mb-10">
+                    <div class="ms-auto p-1 bd-highlight" style="font-size:12px">{{ posts.author.last_name }} {{ posts.author.first_name }}
+                        <br>{{posts.created_at}}</div>
                 </div>
+                </div>
+
+
 
                 <h1><div class = "d-flex p-2 bd-highlight">{{posts.title}}</div></h1>
                 <div class = "d-flex p-2 bd-highlight">{{posts.text}}</div>
