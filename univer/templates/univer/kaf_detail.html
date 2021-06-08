@@ -1,16 +1,30 @@
 {% extends "base.html" %}
 
+
 {% block content %}
 	{% if kafs %}
-		{% for kaf in kafs %}
-			<h1>Кафедра №{{kaf.num}}: курс {{kaf.course}}</h1>
-		{% endfor %}
-        <p><a href="groups/">Список групп</a></p>
-		<<p>
-            <button type="button" class="btn btn-primary">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-                <a href="..">Кафедры</a>
-            </button>
-        </p>
+<div class="container mt-1 mb-3">
+    <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-7">
+            <div class="card">
+
+
+                {% for kaf in kafs %}
+			<h1  style="margin-left: 0.5rem">Кафедра №{{kaf.num}}: курс {{kaf.course}}</h1>
+                <hr class="mt-0" />
+
+                {% endfor %}
+        <p> <button type="button"  style="margin-left: 0.5rem" class="btn btn-sm btn-outline-primary circle-button"><a href="groups/" style="text-decoration: none">Список групп</a></button></p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex p-2 bd-highlight"><button type="button" class="btn btn-outline-c btn-sm"><a href='../' class="a-button">Назад</a></button> </div>
+
+
+
 	{% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
