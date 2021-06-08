@@ -62,15 +62,17 @@
             <li class="nav-item">
               <a class="nav-link" href="/univer/">Посмотреть обучающихся</a>
             </li>
+          </ul>
+          <ul class="nav navbar-nav ms-auto mb-2 mb-lg-0">
             <li>
                 <a class="nav-link" href="/accounts/logout/"></span>Выйти</a>
             </li>
           </ul>
       </div>
       {% else %}
-      <a class="navbar-brand" href="">Добро пожаловать!</a>
+      <a class="navbar-brand" href="/">Добро пожаловать!</a>
       <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <ul class="nav navbar-nav ms-auto mb-2 mb-lg-0">
             <li>
                 <a class="nav-link" href="/register"></span>Регистрация</a>
             </li>
@@ -80,9 +82,6 @@
           </ul>
       </div>
       {% endif %}
-      <span class="navbar-text">
-        UNIVERPORTAL PROJECT
-      </span>
       </div>
     </nav>
     </body>
