@@ -1,11 +1,27 @@
-    <h1 class="page-header">Кафедры</h1>
-    <table class="table table-dark">
-        <thead class="thead-dark">
+<div class="container mt-1 mb-3">
+    <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-7">
+            <div class="card">
+                <p>
+                    <button type="button"
+                            class="btn btn-outline-primary js-create-kaf circle-button"
+                            data-url="{% url 'kaf_create' %}"
+                            style="margin-top:0.5rem; margin-left:0.5rem;">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        New kaf
+                    </button>
+                </p>
+
+                <hr class="mt-0" />
+
+
+                <h1 class="page-header" style="margin-left:0.5rem;">Кафедры</h1>
+    <table class="table">
+        <thead>
         <tr>
             <th>#</th>
             <th>Номер</th>
             <th>Курс</th>
-            <th></th>
             <th></th>
         </tr>
         </thead>
@@ -15,8 +31,8 @@
             <td>{{ kaf.id }}</td>
             <td>{{ kaf.num }}</td>
             <td>{{ kaf.course }}</td>
-            <td><a href="{{ kaf.id }}"><button type="button" class="btn btn-info">Перейти</button></a></td>
-            <td><button type="button" class="btn btn-warning btn-sm js-update-kaf" data-url="{% url 'kaf_update' kaf.id %}"><span class="glyphicon glyphicon-pencil"></span> Edit</button></td>
+            <td><a href="{{ kaf.id }}"><button type="button" class="btn btn-sm btn-outline-c">Перейти</button></a>
+            <button type="button" class="btn circle-button change-button btn-sm js-update-kaf" data-url="{% url 'kaf_update' kaf.id %}"><span class="glyphicon glyphicon-pencil"></span> Редактировать</button></td>
         </tr>
         {% empty %}
         <tr>
@@ -25,3 +41,7 @@
         {% endfor %}
         </tbody>
     </table>
+            </div>
+        </div>
+    </div>
+</div>

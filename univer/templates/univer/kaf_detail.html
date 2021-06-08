@@ -3,7 +3,7 @@
 {% block content %}
 	{% if kafs %}
 		{% for kaf in kafs %}
-			<h1>Кафедра №{{kaf.num}}: {{kaf.course}}</h1>
+			<h1>Кафедра №{{kaf.num}}: курс {{kaf.course}}</h1>
 		{% endfor %}
         <p><a href="groups/">Список групп</a></p>
 		<<p>

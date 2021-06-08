@@ -53,14 +53,7 @@ $(function () {
 
 
 {% block content %}
-  <p>
-    <button type="button"
-            class="btn btn-primary js-create-kaf"
-            data-url="{% url 'kaf_create' %}">
-      <span class="glyphicon glyphicon-plus"></span>
-      New kaf
-    </button>
-  </p>
+
 
 <div class="list">
     {% include 'univer/partial_kaf_list.html' %}
