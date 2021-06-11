@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if students %}
+		{% for student in students %}
+		<ul type="square">
+            <li><b>{{student.stud.last_name}} {{ student.stud.first_name }}</b>
+                <a href={{ student.id }}>Просмотреть профиль</a>
+		</ul>
+		{% endfor %}
+		<a href="../">Назад</a>
+	{% endif %}
+{% endblock %}

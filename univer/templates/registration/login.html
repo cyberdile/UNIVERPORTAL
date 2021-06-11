@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<head>
+		<meta charset = "UTF-8">
+		<title>Login</title>
+	</head>
+		{% if form.errors %}
+		<div class="alert alert-warning" role="alert">
+            <h3>Неверный логин и/или пароль!</h3>
+        </div>
+		{% endif %}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <!-- form card login with validation feedback -->
+                    <div class="card card-outline-secondary">
+                        <div class="card-header">
+                            <h3 class="mb-0">Авторизация</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off" id="loginForm" novalidate="" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="uname1">Логин</label>
+                                    <input type="text" class="form-control" name="username" id="uname1" required="" placeholder="Введите логин...">
+                                    <div class="invalid-feedback">Пожалуйста, введите логин</div>
+                                </div><br>
+                                <div class="form-group">
+                                    <label>Пароль</label>
+                                    <input type="password" class="form-control" id="pwd1" name="password" required="" autocomplete="new-password" placeholder="Введите пароль...">
+                                    <div class="invalid-feedback">Пожалуйста, введите пароль</div>
+                                </div><br>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-lg float-right circle-button" id="btnLogin">Войти</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

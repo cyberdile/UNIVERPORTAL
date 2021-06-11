@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if groups %}
+		{% for group in groups %}
+		<ul type="square">
+			<li><b>{{group.number}}<b>
+			<a href={{group.id}}/>Перейти</a>
+		</ul>
+		{% endfor %}
+		<a href="../">Назад</a>
+	{% endif %}
+{% endblock %}
+

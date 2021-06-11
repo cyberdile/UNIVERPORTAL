@@ -1,0 +1,14 @@
+{% load widget_tweaks %}
+
+<form method="post" action="{% url 'kaf_create' %}" class="js-kaf-create-form">
+  {% csrf_token %}
+  <div class="modal-header">
+    <h4 class="modal-title">Create a new kaf</h4>
+  </div>
+  <div class="modal-body">
+    {% include 'univer/partial_kaf_form.html' %}
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary circle-button">Create kaf</button>
+  </div>
+</form>

@@ -1,0 +1,50 @@
+<div class="container mt-1 mb-3">
+
+    <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-7">
+            <div class="card">
+
+
+                <div style="margin: 1rem">
+                    <button type="button"
+                            class="btn btn-outline-primary btn-sm js-create-post circle-button"
+                            data-url="{% url 'post_create' %}">
+                        Создать новость
+                    </button>
+                </div>
+                <hr class="mt-0" />
+
+
+
+<!--                <div style="margin-top:1rem"></div>-->
+{% if posts %}
+			{% for post in posts %}
+
+                <div style="margin-left:1rem">
+    <h3><a href={{post.id}} style="text-decoration: none; color:black">{{post.title}}</a>
+    </h3>
+
+
+    <p style="color:black; font-size:12px">{{post.created_at}}</p>
+
+
+    <div>
+        <button type="button" class="btn btn-sm btn-default js-like-post like-button" data-url="{% url 'post_like' post.id %}" data-type="post" data-action="like"><span class="glyphicon glyphicon-thumbs-up"></span> <span data-count="like">{{ post.votes.likes.count }}</span> Нравится</button>
+        <button type="button" class="btn btn-sm btn-default js-dislike-post dislike-button" data-url="{% url 'post_dislike' post.id %}" data-type="post" data-action="dislike"><span class="glyphicon glyphicon-thumbs-down"></span> <span data-count="dislike">{{ post.votes.dislikes.count }}</span> Не нравится</button>
+        <button type="button" class="btn btn-sm js-update-post change-button" data-url="{% url 'post_update' post.id %}">
+            <span class="glyphicon glyphicon-pencil"></span> Изменить
+        </button>
+
+    </div>
+                </div>
+    <hr class="mt-4" />
+    {% empty %}
+    <tr>
+        <td colspan="7" class="text-center bg-warning">Нет новостей</td>
+    </tr>
+{% endfor %}
+    {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

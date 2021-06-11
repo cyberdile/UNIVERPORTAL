@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-1 mb-3">
+    <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-7">
+            <div class="card">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex p-2 bd-highlight"><button type="button" class="btn btn-outline-c btn-sm"><a href='../' class="a-button">Назад</a></button> </div>
+
+
+                <div class="d-flex align-items-end flex-column bd-highlight mb-10">
+                    <div class="ms-auto p-1 bd-highlight" style="font-size:12px">{{ posts.author.last_name }} {{ posts.author.first_name }}
+                        <br>{{posts.created_at}}</div>
+                </div>
+                </div>
+
+
+
+                <h1><div class = "d-flex p-2 bd-highlight">{{posts.title}}</div></h1>
+                <div class = "d-flex p-2 bd-highlight">{{posts.text}}</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="container mt-1 mb-5">
+    <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-7">
+            <div class="card">
+
+                <div class="p-3">
+                    {% with comments.count as total_comments %}
+                    <h6>Комментариев: {{ total_comments }}</h6>
+                    {% endwith %}
+                </div>
+
+                <form action="." role="form" method="POST">
+                    {% csrf_token %}
+                    <div class="mt-3 d-flex flex-row align-items-center p-3 form-color">
+                        <input type="text" class="form-control" name="body" placeholder="Введите комментарий...">
+                        <p><input type="submit" class="mt-3 d-flex flex-row align-items-center form-control" value="Добавить"></p>
+                    </div>
+                </form>
+
+                {% for comment in comments %}
+                <div class="mt-2">
+                    <div class="d-flex flex-row p-3">
+                        <div class="w-100">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex flex-row align-items-center"> <span class="mr-2">{{ comment.name.last_name }} {{ comment.name.first_name }}</span> </div> <small>{{ comment.created }}</small>
+                            </div>
+                            <p class="text-justify comment-text mb-0">{{ comment.body|linebreaks }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="p-3">
+                  <p>Нет комментариев.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
